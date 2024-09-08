@@ -1,17 +1,32 @@
 import "./App.css";
-import Appbar from "./components/Appbar";
 import { Box } from "@mui/material";
 import { useState } from "react";
 import { Tabs, Tab } from "@mui/material";
+import Newcontent from "./components/Newcontent";
+import Appbar from "./components/Appbar";
 
 function App() {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState("general");
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
 
   const handleChange = (event, newValue) => {
-    setCurrentTabIndex(newValue)
-    
-    setValue(newValue);
+    setCurrentTabIndex(newValue);
+    switch (newValue) {
+      case 0:
+        setValue("general");
+        break;
+      case 1:
+        setValue("sports");
+        break;
+      case 2:
+        setValue("tech");
+        break;
+      case 3:
+        setValue("food");
+        break;
+      default:
+        setValue("general");
+    }
   };
 
   return (
@@ -90,6 +105,7 @@ function App() {
           }}  />
         </Tabs>
       </Box>
+      <Newcontent topic={value} />
     </>
   );
 }

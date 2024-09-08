@@ -3,7 +3,6 @@ import { AppBar, Box, Typography } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import { motion } from "framer-motion";
 
-// https://arshadalisoomro.hashnode.dev/creating-a-navigation-bar-with-mui-appbar-component-in-nextjs
 const Appbar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>

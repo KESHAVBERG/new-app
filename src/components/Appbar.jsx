@@ -2,8 +2,13 @@ import React from 'react'
 import { AppBar, Box, Typography } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import { motion } from "framer-motion";
+import { useNavigate } from 'react-router-dom';
 
 const Appbar = () => {
+  const navigate = useNavigate();
+  function handleSearch(){
+    navigate('/search')
+  }
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar className='appbar' position='fixed' sx={{ bgcolor: "white", zIndex: 0, pt: 2, px: { lg: 7, md: 7, sm: 2, sx: 2 }, display: "flex", flexDirection: "row" }}
@@ -31,7 +36,7 @@ const Appbar = () => {
             transition: { duration: 0.5 },
           }}
         >
-          <SearchIcon sx={{ mx: 2, color: "black", }} />
+          <SearchIcon onClick={handleSearch} sx={{ mx: 2, color: "black", }} />
         </motion.div>
       </AppBar>
     </Box>

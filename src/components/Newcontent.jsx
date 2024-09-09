@@ -1,24 +1,23 @@
 import { Box } from '@mui/material';
 import React from 'react'
 import { useEffect, useState } from 'react'
-import { List, ListItem, ListItemText, Typography, Link, Grid } from '@mui/material';
 import Newscard from './Newscard';
 import { motion } from 'framer-motion';
 
 const containerSx = {
     display: 'grid',
     gap: 2,
-    gridTemplateColumns: 'repeat(1, 1fr)', // 1 column for small and extra-small screens (xs, sm)
+    gridTemplateColumns: 'repeat(1, 1fr)', 
     '@media (min-width:600px)': {
-        gridTemplateColumns: 'repeat(2, 1fr)', // 2 columns for medium screens (md)
+        gridTemplateColumns: 'repeat(2, 1fr)', 
     },
     '@media (min-width:1100px)': {
-        gridTemplateColumns: 'repeat(3, 1fr)', // 3 columns for large and extra-large screens (lg, xl)
+        gridTemplateColumns: 'repeat(3, 1fr)', 
     },
     '@media (min-width:1200px)': {
-        gridTemplateColumns: 'repeat(3, 1fr)', // Continue 3 columns for xl as well
+        gridTemplateColumns: 'repeat(3, 1fr)', 
     },
-    padding: '16px',      
+    padding: '16px',
     boxSizing: 'border-box',
 };
 
@@ -38,7 +37,7 @@ const Newcontent = ({ topic }) => {
             const cachedData = localStorage.getItem(cacheKey);
             if (cachedData) {
                 const { data, timestamp } = JSON.parse(cachedData);
-                if(!data.articles|| data.articles.length === 0){
+                if (!data.articles || data.articles.length === 0) {
                     try {
                         console.log("In not in cache" + topic)
                         const response = await fetch(url);
@@ -48,7 +47,7 @@ const Newcontent = ({ topic }) => {
                     } catch (error) {
                         throw error;
                     }
-                }else if (Date.now() - timestamp < CACHE_EXPIRY_MS) {
+                } else if (Date.now() - timestamp < CACHE_EXPIRY_MS) {
                     return data;
                 }
             }
@@ -61,7 +60,7 @@ const Newcontent = ({ topic }) => {
                 throw error;
             }
         };
-    
+
         async function loadData() {
             try {
                 const data = await fetchData(topic);
@@ -73,8 +72,8 @@ const Newcontent = ({ topic }) => {
         loadData();
     }, [topic])
     return <>
-        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", m: {xl:10, lg: 10, md: 7, sm: 2, xs: 2 } }}>
-            {error?<p>{error}</p>:<p></p>}
+        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", m: { xl: 10, lg: 10, md: 7, sm: 2, xs: 2 } }}>
+            {error ? <p>{error}</p> : <p></p>}
             {content && content.length === 0 ? <p>No Articles Found</p> :
                 <Box sx={containerSx}>
                     {content.map((article, idx) => (
@@ -83,8 +82,8 @@ const Newcontent = ({ topic }) => {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             key={idx}
-                            >
-                            
+                        >
+
                             <Box>
                                 <Newscard
                                     title={article.title}

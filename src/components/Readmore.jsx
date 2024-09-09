@@ -17,7 +17,7 @@ const ReadMore = () => {
                 width: '100%',
                 height: 'auto', 
                 objectFit: 'cover',
-                maxHeight: 600, 
+                maxHeight: 400, 
               }}          />
         </Card>
             <Box sx={{ maxWidth: '800px', width: '100%', height:"100%" }}>

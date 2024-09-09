@@ -24,16 +24,16 @@ const containerSx = {
 const CACHE_EXPIRY_DAYS = 3;
 const CACHE_EXPIRY_MS = CACHE_EXPIRY_DAYS * 24 * 60 * 60 * 1000;
 
-const Newcontent = ({ topic }) => {
-    console.log(topic)
+const Newcontent = ({ topic, language }) => {
     const [content, setContent] = useState([]);
     const [error, SetError] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
             const apiKey = "efedecca02977a74908dd0910edfdefb";
-            const url = `https://gnews.io/api/v4/search?q=${topic}&apikey=` + apiKey;
-            const cacheKey = `news_${topic}`;
+            const url = `https://gnews.io/api/v4/search?q=${topic}&lang=${language}&apikey=` + apiKey;
+            console.log(url)
+            const cacheKey = `news_${topic}_${language}`;
             const cachedData = localStorage.getItem(cacheKey);
             if (cachedData) {
                 const { data, timestamp } = JSON.parse(cachedData);
@@ -70,7 +70,12 @@ const Newcontent = ({ topic }) => {
             }
         }
         loadData();
-    }, [topic])
+
+    }, [topic, language])
+
+    useEffect(()=>{
+        console.log(content)
+    }, [content])
     return <>
         <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", m: { xl: 10, lg: 10, md: 7, sm: 2, xs: 2 } }}>
             {error ? <p>{error}</p> : <p></p>}
@@ -83,15 +88,12 @@ const Newcontent = ({ topic }) => {
                             transition={{duration:0.5}}
                             key={idx}
                         >
-
-                            {/* <Box> */}
                                 <Newscard
                                     title={article.title}
                                     image={article.image}
                                     description={article.description}
                                     content = {article.content}
                                 />
-                            {/* </Box> */}
                         </motion.div>
 
                     ))}

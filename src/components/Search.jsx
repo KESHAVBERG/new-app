@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { Container, InputBase, Paper, InputAdornment, IconButton, Box, Typography } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import Newscard from './Newscard';
+
 const paperSx = {
   display: 'flex',
   alignItems: 'center',
@@ -10,19 +11,31 @@ const paperSx = {
   border: '1px solid black',
   width: '100%',
   maxWidth: 600,
+};
 
-}
 const inputSx = {
   ml: 1,
   flex: 1,
   py: 1,
   px: 2,
   width: "100%"
-}
+};
+
+const cardboxSx = {
+  flexBasis: {
+    xs: '100%',
+    sm: '50%',
+    md: '33.33%',
+    lg: '25%',
+    xl: '25%'
+  },
+  p: 1
+};
+
 const CACHE_EXPIRY_DAYS = 3;
 const CACHE_EXPIRY_MS = CACHE_EXPIRY_DAYS * 24 * 60 * 60 * 1000;
 
-const Search = () => {
+const Search = ({ lang }) => {
   const searchInputRef = useRef(null);
   const [content, setContent] = useState([]);
   const [error, SetError] = useState("");
@@ -30,8 +43,8 @@ const Search = () => {
 
   const fetchData = useCallback(async (topic) => {
     const apiKey = "efedecca02977a74908dd0910edfdefb";
-    const url = `https://gnews.io/api/v4/search?q=${topic}&apikey=` + apiKey;
-    const cacheKey = `news_${topic}`;
+    const url = `https://gnews.io/api/v4/search?q=${topic}&lang=${lang}&apikey=` + apiKey;
+    const cacheKey = `news_${topic}_${lang}`;
     const cachedData = localStorage.getItem(cacheKey);
     if (cachedData) {
       const { data, timestamp } = JSON.parse(cachedData);
@@ -56,7 +69,7 @@ const Search = () => {
     } catch (error) {
       throw error;
     }
-  }, []);
+  }, [lang]);
 
   const loadData = useCallback(async (topic) => {
     try {
@@ -128,16 +141,7 @@ const Search = () => {
           content.map((item, idx) => (
             <Box
               key={idx}
-              sx={{
-                flexBasis: {
-                  xs: '100%',
-                  sm: '50%',
-                  md: '33.33%',
-                  lg: '25%',
-                  xl: '25%'
-                },
-                p: 1
-              }}
+              sx={cardboxSx}
             >
               <Newscard
                 title={item.title}

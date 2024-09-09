@@ -27,10 +27,20 @@ const tabstyle = {
 function App() {
   const [value, setValue] = useState("general");
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
-  const [selectedLanguage, setSelectedLanguage] = useState("en");
+  const [selectedLanguage, setSelectedLanguage] = useState(() => {
+    const storedLanguage = localStorage.getItem("selectedLanguage");
+    return storedLanguage || "en";
+  });
+
+  useEffect(() => {
+    if (selectedLanguage) {
+      localStorage.setItem("selectedLanguage", selectedLanguage);
+    }
+  }, [selectedLanguage]);
 
   const location = useLocation();
   const isHome = location.pathname === "/";
+
   const handleChange = (event, newValue) => {
     setCurrentTabIndex(newValue);
     switch (newValue) {
@@ -50,10 +60,6 @@ function App() {
         setValue("general");
     }
   };
-
-  useEffect(()=>{
-    console.log(selectedLanguage)
-  }, [selectedLanguage])
 
   return (
     <>
@@ -91,9 +97,12 @@ function App() {
         )}
       </Box>
       <Routes>
-        <Route path="/" element={<Newcontent topic={value} />} />
+        <Route
+          path="/"
+          element={<Newcontent topic={value} language={selectedLanguage} />}
+        />
         <Route path="/readmore/:title" element={<Readmore />} />
-        <Route path="/search" element={<Search />} />
+        <Route path="/search" element={<Search lang={selectedLanguage} />} />
       </Routes>
     </>
   );

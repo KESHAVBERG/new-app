@@ -72,14 +72,14 @@ const Appbar = ({ selectedLanguage, setSelectedLanguage }) => {
           </Select>
         </FormControl>}
 
-        <motion.div
+       {isHome && <motion.div
           whileHover={{
             scale: 1.2,
             transition: { duration: 0.5 },
           }}
         >
           <SearchIcon onClick={handleSearch} sx={{ mx: 2, color: "black", }} />
-        </motion.div>
+        </motion.div>}
       </AppBar>
     </Box>
   )

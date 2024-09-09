@@ -3,12 +3,13 @@ import {React} from 'react'
 import { useNavigate } from 'react-router-dom';
 
 
-const Newscard = ({ title, description, image }) => {
+const Newscard = ({ title, description, image, content }) => {
     const navigate = useNavigate();
     function handleReadMore(){
+        console.log(description)
         console.log("navigation happening", `/readmore/${encodeURIComponent(title)}`)
         navigate(`/readmore/${encodeURIComponent(title)}`,{
-            state:{title, description, image},
+            state:{title, content, image},
         });
     }
     const cardSx = {

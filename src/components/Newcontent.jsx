@@ -89,6 +89,7 @@ const Newcontent = ({ topic }) => {
                                     title={article.title}
                                     image={article.image}
                                     description={article.description}
+                                    content = {article.content}
                                 />
                             </Box>
                         </motion.div>

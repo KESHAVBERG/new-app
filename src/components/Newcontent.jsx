@@ -80,23 +80,22 @@ const Newcontent = ({ topic }) => {
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
+                            transition={{duration:0.5}}
                             key={idx}
                         >
 
-                            <Box>
+                            {/* <Box> */}
                                 <Newscard
                                     title={article.title}
                                     image={article.image}
                                     description={article.description}
                                     content = {article.content}
                                 />
-                            </Box>
+                            {/* </Box> */}
                         </motion.div>
 
                     ))}
                 </Box>
-
             }
         </Box>
 

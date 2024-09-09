@@ -6,12 +6,11 @@ import { useNavigate } from 'react-router-dom';
 const Newscard = ({ title, description, image, content }) => {
     const navigate = useNavigate();
     function handleReadMore(){
-        console.log(description)
-        console.log("navigation happening", `/readmore/${encodeURIComponent(title)}`)
         navigate(`/readmore/${encodeURIComponent(title)}`,{
             state:{title, content, image},
         });
     }
+    
     const cardSx = {
         maxWidth: 345,
         height: 350, 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Card, CardMedia, CardContent, Container } from '@mui/material';
+import { Box, Typography, Card, CardMedia, Container } from '@mui/material';
 import { useLocation } from 'react-router-dom'
 const ReadMore = () => {
     const location = useLocation();

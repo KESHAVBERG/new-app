@@ -2,7 +2,7 @@ import "./App.css";
 import { Box } from "@mui/material";
 import { useState } from "react";
 import { Tabs, Tab } from "@mui/material";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import Newcontent from "./components/Newcontent";
 import Appbar from "./components/Appbar";

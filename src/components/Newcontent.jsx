@@ -7,17 +7,19 @@ import { motion } from 'framer-motion';
 
 const containerSx = {
     display: 'grid',
-    gridTemplateColumns: 'repeat(1, 1fr)',
     gap: 2,
+    gridTemplateColumns: 'repeat(1, 1fr)', // 1 column for small and extra-small screens (xs, sm)
     '@media (min-width:600px)': {
-        gridTemplateColumns: 'repeat(2, 1fr)',
+        gridTemplateColumns: 'repeat(2, 1fr)', // 2 columns for medium screens (md)
     },
-    '@media (min-width:900px)': {
-        gridTemplateColumns: 'repeat(3, 1fr)',
+    '@media (min-width:1100px)': {
+        gridTemplateColumns: 'repeat(3, 1fr)', // 3 columns for large and extra-large screens (lg, xl)
     },
     '@media (min-width:1200px)': {
-        gridTemplateColumns: 'repeat(4, 1fr)',
-    }
+        gridTemplateColumns: 'repeat(3, 1fr)', // Continue 3 columns for xl as well
+    },
+    padding: '16px',      
+    boxSizing: 'border-box',
 };
 
 const CACHE_EXPIRY_DAYS = 3;
@@ -71,16 +73,17 @@ const Newcontent = ({ topic }) => {
         loadData();
     }, [topic])
     return <>
-        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", m: { lg: 10, md: 7, sm: 2, xs: 2 } }}>
+        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", m: {xl:10, lg: 10, md: 7, sm: 2, xs: 2 } }}>
+            {error?<p>{error}</p>:<p></p>}
             {content && content.length === 0 ? <p>No Articles Found</p> :
-
                 <Box sx={containerSx}>
                     {content.map((article, idx) => (
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            key={idx}>
+                            key={idx}
+                            >
                             
                             <Box>
                                 <Newscard

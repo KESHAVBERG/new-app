@@ -5,6 +5,21 @@ import { Tabs, Tab } from "@mui/material";
 import Newcontent from "./components/Newcontent";
 import Appbar from "./components/Appbar";
 
+const tabstyle = {
+  borderRadius: '300px', 
+  bgcolor: 'white', 
+  mx: 1,
+  border: '1px solid grey',
+  "&.Mui-selected": {
+    bgcolor: "rgb(185, 157, 246)",
+    color: "white",
+  },
+  '&:hover': {
+    bgcolor: 'rgb(185, 157, 246)', 
+    color:'white'
+  },
+}
+
 function App() {
   const [value, setValue] = useState("general");
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
@@ -47,62 +62,10 @@ function App() {
          }}
         >
           <Tab label="General" 
-          className="tabs-ele" sx={{
-            borderRadius: '300px', 
-            bgcolor: 'white', 
-            mx: 1,
-            border: '1px solid grey',
-            "&.Mui-selected": {
-              bgcolor: "rgb(185, 157, 246)", 
-              color: "white",
-            },
-            '&:hover': {
-              bgcolor: 'rgb(185, 157, 246)', 
-              color:'white'
-            },
-          }} />
-          <Tab label="Sports" className="tabs-ele" sx={{
-            borderRadius: '300px', 
-            bgcolor: 'white', 
-            mx: 1,
-            border: '1px solid grey',
-            "&.Mui-selected": {
-              bgcolor: "rgb(185, 157, 246)",
-              color: "white",
-            },
-            '&:hover': {
-              bgcolor: 'rgb(185, 157, 246)', 
-              color:'white'
-            },
-          }}  />
-          <Tab label="Tech" className="tabs-ele"  sx={{
-            borderRadius: '300px', 
-            bgcolor: 'white', 
-            mx: 1,
-            border: '1px solid grey',
-            "&.Mui-selected": {
-              bgcolor: "rgb(185, 157, 246)",
-              color: "white",
-            },
-            '&:hover': {
-              bgcolor: 'rgb(185, 157, 246)', 
-              color:'white'
-            },
-          }}  />
-          <Tab label="Food" className="tabs-ele" sx={{
-            borderRadius: '300px', 
-            bgcolor: 'white', 
-            mx: 1,
-            border: '1px solid grey',
-            "&.Mui-selected": {
-              bgcolor: "rgb(185, 157, 246)", 
-              color: "white",
-            },
-            '&:hover': {
-              bgcolor: 'rgb(185, 157, 246)', 
-              color:'white'
-            },
-          }}  />
+          className="tabs-ele" sx={tabstyle} />
+          <Tab label="Sports" className="tabs-ele" sx={tabstyle}  />
+          <Tab label="Tech" className="tabs-ele"  sx={tabstyle}  />
+          <Tab label="Food" className="tabs-ele" sx={tabstyle}  />
         </Tabs>
       </Box>
       <Newcontent topic={value} />

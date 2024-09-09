@@ -1,4 +1,3 @@
-import "./App.css";
 import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Tabs, Tab } from "@mui/material";
@@ -54,7 +53,10 @@ function App() {
         setValue("tech");
         break;
       case 3:
-        setValue("food");
+        setValue("business");
+        break;
+      case 4:
+        setValue("health");
         break;
       default:
         setValue("general");
@@ -92,7 +94,9 @@ function App() {
             <Tab label="General" className="tabs-ele" sx={tabstyle} />
             <Tab label="Sports" className="tabs-ele" sx={tabstyle} />
             <Tab label="Tech" className="tabs-ele" sx={tabstyle} />
-            <Tab label="Food" className="tabs-ele" sx={tabstyle} />
+            <Tab label="business" className="tabs-ele" sx={tabstyle} />
+            <Tab label="Health" className="tabs-ele" sx={tabstyle} />
+
           </Tabs>
         )}
       </Box>

@@ -1,19 +1,19 @@
 import React from 'react'
-import { AppBar, Box, Typography,  Select, MenuItem, FormControl} from '@mui/material'
+import { AppBar, Box, Typography, Select, MenuItem, FormControl } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import { motion } from "framer-motion";
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
 const droupdownsx = {
-  fontSize: '14px',     
-  padding: '0',         
-  height: '24px',       
-  width:"60px",
-  color: 'black',      
-  minWidth: 50,         
+  fontSize: '14px',
+  padding: '0',
+  height: '24px',
+  width: "60px",
+  color: 'black',
+  minWidth: 50,
   '& .MuiSelect-select': {
-    height: '24px',       
+    height: '24px',
     display: 'flex',
     alignItems: 'center',
   }
@@ -38,7 +38,7 @@ const Appbar = ({ selectedLanguage, setSelectedLanguage }) => {
     setSelectedLanguage(event.target.value);
   };
 
-  function handleSearch(){
+  function handleSearch() {
     navigate('/search')
   }
   return (
@@ -55,11 +55,11 @@ const Appbar = ({ selectedLanguage, setSelectedLanguage }) => {
         </Typography>
         <Box sx={{ flexGrow: 1 }} />
 
-  { isHome && <FormControl sx={{ minWidth: 10 }}>
+        {isHome && <FormControl sx={{ minWidth: 10 }}>
           <Select
             labelId="language-label"
             id="language-select"
-            variant="standard" 
+            variant="standard"
             value={selectedLanguage}
             onChange={handleLanguageChange}
             label="Language"
@@ -72,7 +72,7 @@ const Appbar = ({ selectedLanguage, setSelectedLanguage }) => {
           </Select>
         </FormControl>}
 
-       {isHome && <motion.div
+        {isHome && <motion.div
           whileHover={{
             scale: 1.2,
             transition: { duration: 0.5 },

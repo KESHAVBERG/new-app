@@ -7,22 +7,22 @@ import { motion } from 'framer-motion';
 const containerSx = {
     display: 'grid',
     gap: 2,
-    gridTemplateColumns: 'repeat(1, 1fr)', 
+    gridTemplateColumns: 'repeat(1, 1fr)',
     '@media (min-width:600px)': {
-        gridTemplateColumns: 'repeat(2, 1fr)', 
+        gridTemplateColumns: 'repeat(2, 1fr)',
     },
     '@media (min-width:1100px)': {
-        gridTemplateColumns: 'repeat(3, 1fr)', 
+        gridTemplateColumns: 'repeat(3, 1fr)',
     },
     '@media (min-width:1200px)': {
-        gridTemplateColumns: 'repeat(3, 1fr)', 
+        gridTemplateColumns: 'repeat(3, 1fr)',
     },
     padding: '16px',
     boxSizing: 'border-box',
 };
 
-const CACHE_EXPIRY_DAYS = 3;
-const CACHE_EXPIRY_MS = CACHE_EXPIRY_DAYS * 24 * 60 * 60 * 1000;
+const CACHE_EXPIRY_MINUTES = 15;
+const CACHE_EXPIRY_MS = CACHE_EXPIRY_MINUTES * 60 * 1000;
 
 const Newcontent = ({ topic, language }) => {
     const [content, setContent] = useState([]);
@@ -31,8 +31,7 @@ const Newcontent = ({ topic, language }) => {
     useEffect(() => {
         const fetchData = async () => {
             const apiKey = "efedecca02977a74908dd0910edfdefb";
-            const url = `https://gnews.io/api/v4/search?q=${topic}&lang=${language}&apikey=` + apiKey;
-            console.log(url)
+            const url = `https://gnews.io/api/v4/top-headlines?category=${topic}&lang=${language}&apikey=` + apiKey;
             const cacheKey = `news_${topic}_${language}`;
             const cachedData = localStorage.getItem(cacheKey);
             if (cachedData) {
@@ -73,9 +72,6 @@ const Newcontent = ({ topic, language }) => {
 
     }, [topic, language])
 
-    useEffect(()=>{
-        console.log(content)
-    }, [content])
     return <>
         <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", m: { xl: 10, lg: 10, md: 7, sm: 2, xs: 2 } }}>
             {error ? <p>{error}</p> : <p></p>}
@@ -85,15 +81,15 @@ const Newcontent = ({ topic, language }) => {
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{duration:0.5}}
+                            transition={{ duration: 0.5 }}
                             key={idx}
                         >
-                                <Newscard
-                                    title={article.title}
-                                    image={article.image}
-                                    description={article.description}
-                                    content = {article.content}
-                                />
+                            <Newscard
+                                title={article.title}
+                                image={article.image}
+                                description={article.description}
+                                content={article.content}
+                            />
                         </motion.div>
 
                     ))}

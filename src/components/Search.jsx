@@ -32,8 +32,8 @@ const cardboxSx = {
   p: 1
 };
 
-const CACHE_EXPIRY_DAYS = 3;
-const CACHE_EXPIRY_MS = CACHE_EXPIRY_DAYS * 24 * 60 * 60 * 1000;
+const CACHE_EXPIRY_MINUTES = 15;
+const CACHE_EXPIRY_MS = CACHE_EXPIRY_MINUTES * 60 * 1000;
 
 const Search = ({ lang }) => {
   const searchInputRef = useRef(null);
@@ -96,7 +96,6 @@ const Search = ({ lang }) => {
   }, [loadData]);
 
   useEffect(() => {
-    console.log(searchTerm)
     if (searchTerm) {
       sessionStorage.setItem('searchTerm', searchTerm);
       loadData(searchTerm);

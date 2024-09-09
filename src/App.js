@@ -1,12 +1,12 @@
 import "./App.css";
 import { Box } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Tabs, Tab } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import Newcontent from "./components/Newcontent";
 import Appbar from "./components/Appbar";
-import Search from './components/Search';
+import Search from "./components/Search";
 import Readmore from "./components/Readmore";
 
 const tabstyle = {
@@ -27,8 +27,10 @@ const tabstyle = {
 function App() {
   const [value, setValue] = useState("general");
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
+  const [selectedLanguage, setSelectedLanguage] = useState("en");
+
   const location = useLocation();
-  const isHome = location.pathname === '/';
+  const isHome = location.pathname === "/";
   const handleChange = (event, newValue) => {
     setCurrentTabIndex(newValue);
     switch (newValue) {
@@ -49,46 +51,50 @@ function App() {
     }
   };
 
+  useEffect(()=>{
+    console.log(selectedLanguage)
+  }, [selectedLanguage])
+
   return (
     <>
-        <Appbar />
-        <Box
-          sx={{
-            width: "100%",
-            mt: 8,
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          {
-            isHome && (
-              <Tabs
-              TabIndicatorProps={{ style: { display: "none" } }}
-              value={currentTabIndex}
-              onChange={handleChange}
-              variant="scrollable"
-              scrollButtons="auto"
-              sx={{
-                maxWidth: "100%",
-                overflowX: "auto",
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <Tab label="General" className="tabs-ele" sx={tabstyle} />
-              <Tab label="Sports" className="tabs-ele" sx={tabstyle} />
-              <Tab label="Tech" className="tabs-ele" sx={tabstyle} />
-              <Tab label="Food" className="tabs-ele" sx={tabstyle} />
-            </Tabs>
-            )
-          }
-         
-        </Box>
-        <Routes>
-          <Route path="/" element={<Newcontent topic={value} />} />
-          <Route path="/readmore/:title" element={<Readmore />} />
-          <Route path="/search" element={<Search />} />
-        </Routes>
+      <Appbar
+        selectedLanguage={selectedLanguage}
+        setSelectedLanguage={setSelectedLanguage}
+      />
+      <Box
+        sx={{
+          width: "100%",
+          mt: 8,
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        {isHome && (
+          <Tabs
+            TabIndicatorProps={{ style: { display: "none" } }}
+            value={currentTabIndex}
+            onChange={handleChange}
+            variant="scrollable"
+            scrollButtons="auto"
+            sx={{
+              maxWidth: "100%",
+              overflowX: "auto",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <Tab label="General" className="tabs-ele" sx={tabstyle} />
+            <Tab label="Sports" className="tabs-ele" sx={tabstyle} />
+            <Tab label="Tech" className="tabs-ele" sx={tabstyle} />
+            <Tab label="Food" className="tabs-ele" sx={tabstyle} />
+          </Tabs>
+        )}
+      </Box>
+      <Routes>
+        <Route path="/" element={<Newcontent topic={value} />} />
+        <Route path="/readmore/:title" element={<Readmore />} />
+        <Route path="/search" element={<Search />} />
+      </Routes>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react'
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { Container, InputBase, Paper, InputAdornment, IconButton, Box, Typography } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import Newscard from './Newscard';

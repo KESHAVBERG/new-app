@@ -42,7 +42,7 @@ const Search = ({ lang }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const fetchData = useCallback(async (topic) => {
-    const apiKey = "efedecca02977a74908dd0910edfdefb";
+    const apiKey = "API KEY";
     const url = `https://gnews.io/api/v4/search?q=${topic}&lang=${lang}&apikey=` + apiKey;
     const cacheKey = `news_${topic}_${lang}`;
     const cachedData = localStorage.getItem(cacheKey);

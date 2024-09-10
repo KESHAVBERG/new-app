@@ -30,7 +30,8 @@ const Newcontent = ({ topic, language }) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const apiKey = "efedecca02977a74908dd0910edfdefb";
+            const apiKey = process.env.REACT_APP_gnews_apikey;
+            console.log(apiKey)
             const url = `https://gnews.io/api/v4/top-headlines?category=${topic}&lang=${language}&apikey=` + apiKey;
             const cacheKey = `news_${topic}_${language}`;
             const cachedData = localStorage.getItem(cacheKey);

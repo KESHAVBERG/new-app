@@ -3,6 +3,13 @@ This website uses React, Material UI, Framer Motion, and the Gnews.io API.
 The cache expires every 15 minutes to reduce load times and address the issue of the 100 requests/day limit. Caching is used to prevent excessive API calls triggered by useEffect on each render. Local storage is used to persist the selected language and the last search.
 </br>
 
+**To use the apikey:**
+1. Create a .env file and add your key: REACT_APP_apikey=your_key_here.
+2. Access the key in your code using: const apikey = process.env.REACT_APP_apikey.
+3. Ensure you restart the development server after creating the .env file for the changes to take effect.
+4. 
+</br>
+
 **Hooks Used:** 
 1. **useState**: Tracks state in a functional component.
 2. **useEffect**: Allows to perform side effects on the components.

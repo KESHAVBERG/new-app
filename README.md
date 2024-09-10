@@ -7,7 +7,7 @@ The cache expires every 15 minutes to reduce load times and address the issue of
 1. Create a .env file and add your key: REACT_APP_apikey=your_key_here.
 2. Access the key in your code using: const apikey = process.env.REACT_APP_apikey.
 3. Ensure you restart the development server after creating the .env file for the changes to take effect.
-4. 
+   
 </br>
 
 **Hooks Used:** 
